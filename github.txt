@@ -15,11 +15,13 @@ github api:
 	---open_issues_count
 	---forks_count
 	---stargazers_count
+	
 
    统计信息
 	贡献者人数 https://api.github.com/repos/EOSIO/eos/stats/contributors
 	最近每周的提交次数 https://api.github.com/repos/EOSIO/eos/stats/commit_activity
 	发布版本数 https://api.github.com/repos/Loopring/protocol/releases
+	最近提交 https://api.github.com/repos/EOSIO/eos/commits
 
 aicoin api:价格市值：
 	https://aicoin.com/api/data/getMc?type=all
