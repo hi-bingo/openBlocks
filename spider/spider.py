@@ -113,9 +113,7 @@ def scrapyAicoin():
     logging.info('scrapy aicoin....')
     usd2cny=6.6
     headers = {
-        'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-        'cache-control': "no-cache",
-        'postman-token': "a3a9e8c3-3719-3057-589e-0fe88b9d111c"
+        'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
     }
     session = DBSession()
     while True:
