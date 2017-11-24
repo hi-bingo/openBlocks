@@ -5,7 +5,7 @@
 # @Site    : 
 # @File    : models.py
 # @Software: PyCharm
-from sqlalchemy import Column, Integer, String,Text,DateTime,DECIMAL,ForeignKey
+from sqlalchemy import Column, Integer, String,Text,DateTime,DECIMAL,BigInteger
 from app import db
 
 
@@ -39,7 +39,9 @@ class BlockProjectPrice(db.Model):
     __tablename__ = 'projectPrice'
     id = Column(Integer,autoincrement=True, primary_key=True)
     name = Column(String(255),unique=True)
-    amount=Column(Integer)
-    supply = Column(String(255))
-    currentPrice=Column(DECIMAL)
-    marketPrice=Column(DECIMAL)
+    supply=Column(BigInteger)
+    amount = Column(String(255))
+    currentPriceCNY=Column(DECIMAL(30,4))
+    marketPriceCNY=Column(DECIMAL(30,4))
+    currentPriceUSD = Column(DECIMAL(30,4))
+    marketPriceUSD = Column(DECIMAL(30,4))
