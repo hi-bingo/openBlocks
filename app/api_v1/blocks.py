@@ -8,9 +8,11 @@
 import codecs
 import simplejson as json
 from flask_restful import Resource,reqparse
+
 from app.models import BlockProjectBase,BlockProjectGit,BlockProjectPrice
 from app.api_v1 import api
 from app import db
+from .Utils import parseIcon
 
 parser = reqparse.RequestParser()
 parser.add_argument('name', type=str)
@@ -19,6 +21,8 @@ parser.add_argument('gitAddress', type=str)
 parser.add_argument('website', type=str)
 parser.add_argument('whitepaper', type=str)
 parser.add_argument('desp', type=str)
+parser.add_argument('iconSmall', type=str)
+parser.add_argument('iconMid', type=str)
 
 
 
@@ -32,6 +36,7 @@ class ProjectList(Resource):
                                                 order_by(db.desc(BlockProjectGit.star)).all():
             res.append({'name':base.name,'gitAddress':git.gitAddress,'star':git.star,'forks':git.forks,'contributors':git.contributors,
                  'lastCommit':str(git.lastCommit),'weekCommit':git.weekCommit,'monthCommit':git.monthCommit,'seasonCommit':git.seasonCommit,
+                 'watch':git.watch,'issue':git.openIssue,
                  'releases':git.releases,'marketPriceCNY':float(price.marketPriceCNY)})
         return res
 
@@ -57,17 +62,21 @@ class ProjectDetail(Resource):
 class ProjectAdd(Resource):
     def post(self):
         args = parser.parse_args()
-        print(args)
         content = {'name': args['name'],
                    'fullname': args['fullname'],
                    'gitAddress': args['gitAddress'],
                    'website': args['website'],
                    'whitepaper': args['whitepaper'],
-                   'desp': args['desp']
+                   'desp': args['desp'],
+                   'iconSmall': args['iconSmall'],
+                   'iconMid': args['iconMid']
                    }
+
+        iconSmall=parseIcon("http:"+content['iconSmall'],saveName=content['name']+'_small')
+        iconMid = parseIcon("http:"+content['iconMid'],saveName=content['name']+'_mid')
         try:
             base = BlockProjectBase(name=content['name'], fullName=content['fullname'], website=content['website'],
-                                    whitepaper=content['whitepaper'], desp=content['desp'])
+                                    whitepaper=content['whitepaper'], desp=content['desp'],iconSmall=iconSmall,iconMid=iconMid )
             git = BlockProjectGit(name=base.name, gitAddress=content['gitAddress'])
             price = BlockProjectPrice(name=base.name)
             db.session.add(base)

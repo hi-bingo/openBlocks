@@ -37,7 +37,7 @@ AICOIN_INTERVAL=30
 
 def parseBaseUrl(baseUrl,headers):
     res = requests.get(baseUrl,headers=headers).json()
-    return  res['stargazers_count'], res['forks_count'],res['open_issues_count']
+    return  res['stargazers_count'], res['forks_count'],res['open_issues_count'],res['subscribers_count']
 
 def parsecontributorsUrl(contributorsUrl,headers):
     res = requests.get(contributorsUrl,headers=headers).json()
@@ -75,7 +75,7 @@ def scrapyProjectGit(projectGit):
                         gevent.spawn(parselastCommitUrl, lastCommitUrl,headers),
                         ]
         gevent.joinall(taskList)
-        projectGit.star,projectGit.forks,projectGit.openIssue=taskList[0].value
+        projectGit.star,projectGit.forks,projectGit.openIssue,projectGit.watching=taskList[0].value
         projectGit.contributors=taskList[1].value
         projectGit.weekCommit,projectGit.monthCommit,projectGit.seasonCommit=taskList[2].value
         projectGit.releases=taskList[3].value

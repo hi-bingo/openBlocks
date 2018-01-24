@@ -17,6 +17,8 @@ class BlockProjectBase(db.Model):
     website = Column(String(255))
     whitepaper = Column(String(255))
     desp = Column(Text)
+    iconSmall=Column(String(255))
+    iconMid = Column(String(255))
 
 
 class BlockProjectGit(db.Model):
@@ -26,6 +28,7 @@ class BlockProjectGit(db.Model):
     gitAddress = Column(String(255))
     star=Column(Integer)
     forks=Column(Integer)
+    watch=Column(Integer)
     openIssue=Column(Integer)
     releases = Column(Integer)
     contributors = Column(Integer)

@@ -8,6 +8,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api
+from flask_cors import CORS
 
 # from app.api_v1.api import api
 
@@ -26,5 +27,5 @@ def create_app(config_object):
     # api.init_app(app)
     app.register_blueprint(api_blueprint)
     # attach routes and custom error pages here
-
+    cors = CORS(app, resources={"/api/*": {"origins": "*"}})
     return app

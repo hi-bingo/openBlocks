@@ -5,7 +5,7 @@ EOS: https://github.com/EOSIO/eos
 status: https://github.com/status-im/status-react
 bytom: https://github.com/Bytom/bytom
 GXS: https://github.com/gxchain/gxb-core
-
+enj: https://github.com/enjin/contracts
 
 
 
@@ -15,9 +15,9 @@ github api:
 	---open_issues_count
 	---forks_count
 	---stargazers_count
-	
 
    统计信息
+	watching https://api.github.com/repos/EOSIO/eos/subscribers
 	贡献者人数 https://api.github.com/repos/EOSIO/eos/stats/contributors
 	最近每周的提交次数 https://api.github.com/repos/EOSIO/eos/stats/commit_activity
 	发布版本数 https://api.github.com/repos/Loopring/protocol/releases
