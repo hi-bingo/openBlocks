@@ -5,14 +5,14 @@
 # @Site    : 
 # @File    : news.py
 # @Software: PyCharm
-import codecs
+import math
 import simplejson as json
 from flask_restful import Resource,reqparse
 
 from app.models import BlockProjectBase,BlockProjectGit,BlockProjectPrice
 from app.api_v1 import api
 from app import db
-from .Utils import parseIcon
+from .Utils import parseIcon,price2float
 
 parser = reqparse.RequestParser()
 parser.add_argument('name', type=str)
@@ -23,22 +23,29 @@ parser.add_argument('whitepaper', type=str)
 parser.add_argument('desp', type=str)
 parser.add_argument('iconSmall', type=str)
 parser.add_argument('iconMid', type=str)
-
-
+parser.add_argument('page', type=int)
+parser.add_argument('per_page', type=int)
 
 
 class ProjectList(Resource):
     def get(self):
+        args = parser.parse_args()
+        content = {'page': args['page'],'per_page':args['per_page']}
         res=[]
+        querySuggest = []
+        projectBase=db.session.query(BlockProjectBase).all()
+        pages=math.ceil(len(projectBase)/content['per_page'])
+        for base in projectBase:
+            querySuggest.append({'val':base.name,'value':base.fullName+'('+base.name+')'})
         for base,git,price in db.session.query(BlockProjectBase, BlockProjectGit,BlockProjectPrice).\
                                                 filter(BlockProjectBase.name == BlockProjectGit.name).\
                                                 filter(BlockProjectBase.name== BlockProjectPrice.name).\
-                                                order_by(db.desc(BlockProjectGit.star)).all():
+                                                order_by(db.desc(BlockProjectGit.lastCommit)).limit(content['per_page']).offset(content['per_page']*(content['page']-1)):
             res.append({'name':base.name,'gitAddress':git.gitAddress,'star':git.star,'forks':git.forks,'contributors':git.contributors,
                  'lastCommit':str(git.lastCommit),'weekCommit':git.weekCommit,'monthCommit':git.monthCommit,'seasonCommit':git.seasonCommit,
                  'watch':git.watch,'issue':git.openIssue,
-                 'releases':git.releases,'marketPriceCNY':float(price.marketPriceCNY)})
-        return res
+                 'releases':git.releases,'currentPriceCNY':price2float(price.currentPriceCNY),'marketPriceCNY':price2float(price.marketPriceCNY),'iconSmall':base.iconSmall})
+        return {'pages': pages,'res':res,'querySuggest':querySuggest}
 
 class ProjectDetail(Resource):
     def get(self,coinname):
@@ -50,9 +57,9 @@ class ProjectDetail(Resource):
              'gitAddress': git.gitAddress, 'star': git.star, 'forks': git.forks,'openIssue':git.openIssue,
              'contributors': git.contributors, 'lastCommit': str(git.lastCommit), 'weekCommit': git.weekCommit,
              'monthCommit': git.monthCommit, 'seasonCommit': git.seasonCommit, 'releases': git.releases,
-             'currentPriceCNY':float(price.currentPriceCNY),'currentPriceUSD':float(price.currentPriceUSD),
-             'marketPriceCNY': float(price.marketPriceCNY),'marketPriceUSD':float(price.marketPriceUSD),
-             'amount':price.amount,'supply':price.supply}
+             'currentPriceCNY':price2float(price.currentPriceCNY),'currentPriceUSD':price2float(price.currentPriceUSD),
+             'marketPriceCNY': price2float(price.marketPriceCNY),'marketPriceUSD':price2float(price.marketPriceUSD),
+             'amount':price.amount,'supply':price.supply,'iconMid':base.iconMid,'commitStats':git.commitStats}
 
         return res
 

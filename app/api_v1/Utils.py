@@ -18,6 +18,12 @@ def parseIcon(iconUrl,saveName):
     print('logo.jpg', sz, 'bytes')
     return saveName+'.png'
 
+def price2float(price):
+    if price is None:
+        return '/'
+    else:
+        return float(price)
+
 
 
 if __name__ == '__main__':

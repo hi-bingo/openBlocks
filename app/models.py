@@ -36,7 +36,7 @@ class BlockProjectGit(db.Model):
     weekCommit=Column(Integer)
     monthCommit = Column(Integer)
     seasonCommit = Column(Integer)
-
+    commitStats=Column(Text)
 
 class BlockProjectPrice(db.Model):
     __tablename__ = 'projectPrice'
