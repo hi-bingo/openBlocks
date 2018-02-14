@@ -11,7 +11,7 @@ from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand  # 载入migrate扩展
 import config
 
-app=create_app(config.DevelopmentConfig)
+app=create_app(config.Config)
 manager = Manager(app)
 migrate = Migrate(app, db)  # 注册migrate到flask
 

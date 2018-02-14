@@ -31,16 +31,10 @@ DBSession = sessionmaker(bind=engine)
 FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 logging.basicConfig(format=FORMAT, filename='spider.log', level=logging.INFO)
 
-GITHUB_INTERVAL = 30 * 60
-AICOIN_INTERVAL = 30
+
 
 
 def ts2date(ts):
-    """
-    
-    :param ts: 
-    :return: 
-    """
     return datetime.datetime.fromtimestamp(
         int(ts)
     ).strftime('%m/%d')
@@ -77,7 +71,7 @@ def parselastCommitUrl(lastCommitUrl, headers):
 
 
 def scrapyProjectGit(projectGit):
-    headers = {'authorization': "token 894d1d909764c3e6aa1be6952e3668d17484a8d2"}
+    headers = {'authorization': config.Config.GITHUB_AUTH}
     URL_PRE = 'https://api.github.com/repos/'
     repo = projectGit.gitAddress.split('https://github.com/')[1]
     baseUrl = URL_PRE + repo
@@ -175,8 +169,8 @@ if __name__ == '__main__':
             githubSpider = threading.Thread(target=scrapyGithub, name='scrapyGithub')
             githubSpider.start()
 
-        time.sleep(AICOIN_INTERVAL)
+        time.sleep(config.Config.AICOIN_INTERVAL)
         gitCount += 1
-        if (gitCount >= 60):
+        if (gitCount >= config.Config.GITHUB_INTERVAL/config.Config.AICOIN_INTERVAL):
             gitCount = 0
             gitFlag = True
