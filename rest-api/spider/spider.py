@@ -25,7 +25,7 @@ from app.models import BlockProjectGit, BlockProjectPrice
 
 Base = declarative_base()
 
-engine = create_engine(config.DevelopmentConfig.SQLALCHEMY_DATABASE_URI)
+engine = create_engine(config.Config.SQLALCHEMY_DATABASE_URI)
 DBSession = sessionmaker(bind=engine)
 
 FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
@@ -88,7 +88,7 @@ def scrapyProjectGit(projectGit):
                     ]
         gevent.joinall(taskList)
         projectGit.star, projectGit.forks, projectGit.openIssue, projectGit.watch = taskList[0].value
-        print(taskList[0].value)
+        # print(taskList[0].value)
         projectGit.contributors = taskList[1].value
         projectGit.weekCommit, projectGit.monthCommit, projectGit.seasonCommit, projectGit.commitStats = taskList[
             2].value
@@ -112,8 +112,8 @@ def scrapyGithub():
         session.commit()
         session.close()
     except Exception as e:
-        print('github:')
-        print(e)
+        # print('github:')
+        # print(e)
         logging.error(e)
 
 
@@ -146,13 +146,13 @@ def scrapyAicoin():
                 projectPrice.marketPriceUSD = projectPrice.marketPriceCNY / usd2cny
         session.commit()
     except Exception as e:
-        print('aicoin:')
-        print(e)
+        # print('aicoin:')
+        # print(e)
         logging.error(e)
 
 
 if __name__ == '__main__':
-    # print(config.DevelopmentConfig.SQLALCHEMY_DATABASE_URI)
+    # print(config.Config.SQLALCHEMY_DATABASE_URI)
     # session = DBSession()
     # projectGits = session.query(BlockProjectGit).all()
     # for projectGit in projectGits:

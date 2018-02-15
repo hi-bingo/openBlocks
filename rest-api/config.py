@@ -11,11 +11,14 @@ import os
 class Config:
     DEBUG = True
 
-    MYSQL_IP='localhost'
+    MYSQL_IP='120.78.158.126'
     MYSQL_PORT = '3306'
-    MYSQL_USERNAME='root'
-    MYSQL_PASSWORD='zb555920'
-    MYSQL_DB='openblocks'
+    MYSQL_USERNAME='openblocks'
+    MYSQL_PASSWORD='openblocksSQL'
+    MYSQL_DB = 'openblocks'
+    # MYSQL_USERNAME = 'openblocks_net'
+    # MYSQL_PASSWORD = 'dp5iekPfwAmP5CT7'
+    # MYSQL_DB='openblocks_net'
     MYSQL_CHARSET='charset=utf8'
     SQLALCHEMY_DATABASE_URI="mysql+pymysql://" +MYSQL_USERNAME+":"+MYSQL_PASSWORD+"@"+MYSQL_IP+":"+MYSQL_PORT+"/"+MYSQL_DB+'?'+MYSQL_CHARSET
 

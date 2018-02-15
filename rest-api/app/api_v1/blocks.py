@@ -6,9 +6,7 @@
 # @File    : news.py
 # @Software: PyCharm
 import math
-import simplejson as json
 from flask_restful import Resource,reqparse
-
 from app.models import BlockProjectBase,BlockProjectGit,BlockProjectPrice
 from app.api_v1 import api
 from app import db
@@ -102,14 +100,14 @@ class Test(Resource):
                                                 filter(BlockProjectBase.name == BlockProjectGit.name).\
                                                 filter(BlockProjectBase.name== BlockProjectPrice.name).all():
             print(base.fullName)
-            print(git.gitAddress)
-            print(price.amount)
+            # print(git.gitAddress)
+            # print(price.amount)
 
         return {'text':'hello'}
 
     def post(self):
         args = parser.parse_args()
-        print(args)
+        # print(args)
         content = {'name': args['name'],
                    'fullname':args['fullname'],
                    'gitAddress':args['gitAddress'],
