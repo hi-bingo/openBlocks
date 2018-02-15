@@ -15,7 +15,7 @@ http://www.openblocks.net/
 │　├─spider　　　　爬虫端根目录   
 │　├─config.py 　　　配置信息    
 ├─front　　　　　　前端端根目录  
-│　└─src  
+│　├─src  
 
 ### 本地运行
 ```
@@ -41,3 +41,10 @@ cd front          # 进入前端根目录
 npm install
 npm run dev
 ```
+![](https://github.com/Vniex/openBlocks/raw/master/images/List.png)
+
+![](https://github.com/Vniex/openBlocks/raw/master/images/Detail.png)
+
+![](https://github.com/Vniex/openBlocks/raw/master/images/Create.png)
+
+路径 http://127.0.0.1:8010/create 添加项目
