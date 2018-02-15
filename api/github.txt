@@ -1,0 +1,26 @@
+
+EOS: https://github.com/EOSIO/eos
+0x: https://github.com/0xProject/contracts
+status: https://github.com/status-im/status-react
+bytom: https://github.com/Bytom/bytom
+GXS: https://github.com/gxchain/gxb-core
+enj: https://github.com/enjin/contracts
+
+
+
+
+github api:
+   ������Ϣ(star/fork)https://api.github.com/repos/EOSIO/eos
+	---open_issues_count
+	---forks_count
+	---stargazers_count
+
+   ͳ����Ϣ
+	watching https://api.github.com/repos/EOSIO/eos/subscribers
+	���������� https://api.github.com/repos/EOSIO/eos/stats/contributors
+	����ÿ�ܵ��ύ���� https://api.github.com/repos/EOSIO/eos/stats/commit_activity
+	�����汾�� https://api.github.com/repos/Loopring/protocol/releases
+	�����ύ https://api.github.com/repos/EOSIO/eos/commits
+
+aicoin api:�۸���ֵ��
+	https://aicoin.com/api/data/getMc?type=all

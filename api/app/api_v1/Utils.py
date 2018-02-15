@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/1/24 16:14
 # @Author  : Vniex
-# @Site    : 
+# @Site    :
 # @File    : Utils.py
 # @Software: PyCharm
 import requests
@@ -23,8 +23,3 @@ def price2float(price):
         return '/'
     else:
         return float(price)
-
-
-
-if __name__ == '__main__':
-    parseIcon("http://static.feixiaohao.com/Coin/d77363643552fcfbfbf777d3ade390e9_mid.png",saveName="eos_mid")

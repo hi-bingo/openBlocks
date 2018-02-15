@@ -30,7 +30,7 @@ const router = new VueRouter({
       component: detailComponent
     },
     {
-      path: '/crprot',
+      path: '/create',
       component: creatComponent
     }
   ]

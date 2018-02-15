@@ -1,8 +1,5 @@
 <template>
   <div id="creatComponent">
-
-
-
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="名称">
         <el-col :span="9">

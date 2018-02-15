@@ -86,7 +86,7 @@
       },
 
      handlePageChange(currentPage){
-       this.$http.jsonp('http://120.78.158.126:5001/api/project/all/', {params:{'page':currentPage,'per_page':12}}).then(
+       this.$http.jsonp('http://127.0.0.1:5000/api/project/all/', {params:{'page':currentPage,'per_page':12}}).then(
         function(res) {
         // 这里是处理正确的回调
         var data=[];
