@@ -7,15 +7,16 @@ http://www.openblocks.net/
 前端使用 Vue.js+ElementUI   后端使用 flask+mysql
 
 ### 目录结构
-├─api　　　　　　　后端根目录  
-│　├─app              
-│　│　├─api_v1  
-│　│　├─static  
-│　│　├─templates  
-│　├─spider　　　　爬虫端根目录   
-│　├─config.py 　　　配置信息    
-├─front　　　　　　前端端根目录  
-│　├─src  
+api/　　　　　　　后端根目录  
+　　app/           
+　　　　api_v1/  
+　　　　static/  
+　　　　emplates/  
+　　spider/　　　　爬虫根目录   
+　　config.py　　　配置信息  
+　　manage.py　　启动脚本  
+front/　　　　　　 前端根目录  
+　　src/  
 
 ### 本地运行
 ```
