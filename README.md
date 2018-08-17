@@ -1,6 +1,5 @@
 ## openBlocks
-项目已部署
-http://www.openblocks.net/
+
 ### 说明
 统计跟踪开源区块链项目的star/fork/commit记录等信息
 
